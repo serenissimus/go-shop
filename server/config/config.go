@@ -9,7 +9,7 @@ func DefaultConfig() (*Config, error) {
 	cfg := &Config{
 		DB: DBConfig{
 			Postgres: PostgresConfig{
-				Host:     "localhost",
+				Host:     "0.0.0.0",
 				Port:     5432,
 				User:     "dev",
 				Password: "secret",

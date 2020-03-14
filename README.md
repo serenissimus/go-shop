@@ -2,7 +2,8 @@
 
 ## Environment setup
 
-You need to have [Go](https://golang.org/),
+You need to have
+[Go](https://golang.org/),
 [Node.js](https://nodejs.org/),
 [Docker](https://www.docker.com/), and
 [Docker Compose](https://docs.docker.com/compose/)
@@ -30,15 +31,15 @@ need to prepend it with `sudo` depending on your setup):
 docker-compose -f docker-compose-dev.yml up
 ```
 
-This starts a local MongoDB on `localhost:27017`.
+This starts a local PostgreSQL on `localhost:5432`.
 The DB will be populated with test records from the
-[init-db.js](init-db.js) file.
+[init-db.sql](init-db.sql) file.
 
 Navigate to the `server` folder and start the back end:
 
 ```sh
-cd server
-go run server.go
+cd server/app
+go run .
 ```
 The back end will serve on http://localhost:8080.
 
@@ -47,8 +48,8 @@ and start the front end development server by running:
 
 ```sh
 cd webapp
-npm install
-npm start
+yarn
+yarn start
 ```
 The application will be available on http://localhost:3000.
  
