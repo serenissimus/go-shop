@@ -5,5 +5,5 @@ import (
 )
 
 func Register(e *gin.Engine) {
-	e.GET("/technology", findAll)
+	e.GET("/technologies", findAll)
 }

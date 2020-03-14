@@ -8,7 +8,7 @@ all: clean build
 clean:
 	rm -fr ${OUTPUT_DIR}/*
 
-build:
+build: format
 	go build -o ${OUTPUT_DIR}/server ./app
 
 format:

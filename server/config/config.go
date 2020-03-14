@@ -19,6 +19,7 @@ func DefaultConfig() (*Config, error) {
 		},
 		Web: WebConfig{
 			Port: 8080,
+			Cors: true,
 		},
 	}
 	return cfg, nil

@@ -5,3 +5,4 @@ CREATE TABLE technologies(
   details         VARCHAR(4096) NULL
 );
 INSERT INTO technologies(name, details) VALUES('golang', 'Go language');
+INSERT INTO technologies(name, details) VALUES('react', 'React');
