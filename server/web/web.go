@@ -3,9 +3,12 @@ package web
 import (
 	"fmt"
 	"go-shop/config"
-	"go-shop/web/routers"
+	"go-shop/web/router"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 )
@@ -26,13 +29,20 @@ func New(cfg *config.Config, db *gorm.DB) (*Web, error) {
 func (w *Web) Serve() error {
 	r := gin.Default()
 
-	r.Use(cors.Default())
+	if w.cfg.Web.Cors {
+		r.Use(cors.Default())
+	}
 
 	r.Use(func(c *gin.Context) {
 		c.Set("db", w.db)
 		c.Next()
 	})
 
-	routers.Register(r)
+	r.Use(static.Serve("/", static.LocalFile("/webapp", false)))
+
+	log.Info("Register routes")
+	router.Register(r)
+
+	log.Infof("Launch server on port %d", w.cfg.Web.Port)
 	return r.Run(fmt.Sprintf(":%d", w.cfg.Web.Port))
 }

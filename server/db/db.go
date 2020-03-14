@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"time"
 
 	"go-shop/config"
 
@@ -23,7 +24,26 @@ func NewPostgres(cfg *config.Config) (*gorm.DB, error) {
 	if !cfg.DB.Postgres.SSL {
 		connectionString += " sslmode=disable"
 	}
-	log.Infof("Connection string '%s'\n", connectionString)
-	return gorm.Open("postgres", connectionString)
+	log.Infof("Connection string is '%s'", connectionString)
+
+	var (
+		db  *gorm.DB
+		err error
+	)
+
+	for i := 0; i < cfg.DB.MaxTries; i++ {
+		log.Infof("Try connect to DB [%d]", i)
+
+		db, err = gorm.Open("postgres", connectionString)
+		if err == nil {
+			break
+		}
+
+		log.Warnf("Couldn't connect to DB '%v'", err)
+		log.Warnf("Sleep for %v", cfg.DB.Timeout)
+		time.Sleep(cfg.DB.Timeout)
+	}
+
+	return db, err
 
 }

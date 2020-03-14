@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 type PostgresConfig struct {
 	Host     string
 	Port     int
@@ -11,4 +13,6 @@ type PostgresConfig struct {
 
 type DBConfig struct {
 	Postgres PostgresConfig
+	MaxTries int
+	Timeout  time.Duration
 }
