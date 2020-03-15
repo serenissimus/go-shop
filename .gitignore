@@ -7,7 +7,6 @@
 *.out
 
 /webapp/node_modules/
-/webapp/build/
-/webapp/npm-debug.log*
+/webapp/dist/
 
 /server/bin/

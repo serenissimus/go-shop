@@ -14,3 +14,4 @@ services:
     restart: always
     volumes:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - ./setup-test-data.sql:/docker-entrypoint-initdb.d/setup-test-data.sql
