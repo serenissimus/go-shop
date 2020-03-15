@@ -1,19 +1,35 @@
 .PHONY: clean build format test
 
+# -------------------------------------------------------------------------------- #
+# Variables.
+
+# Common.
 OUTPUT_DIR = bin
+SERVER_BIN = $(OUTPUT_DIR)/server
 
+# Compiler and tools.
+GO = go
 
-all: clean build
+# -------------------------------------------------------------------------------- #
+# Goals.
 
-clean:
-	rm -fr ${OUTPUT_DIR}/*
+all: build
 
 build: format
-	go build -o ${OUTPUT_DIR}/server ./app
+	$(GO) build -o $(SERVER_BIN) ./app
+
+clean:
+	rm -fr ${OUTPUT_DIR}
+	mkdir -p ${OUTPUT_DIR}
 
 format:
-	go mod tidy
-	go fmt ./...
+	$(GO) mod tidy
+	$(GO) fmt ./...
+
+run: build
+	./$(SERVER_BIN)
 
 test:
-	go test -v --cover ./...
+	$(GO) test -v --cover ./...
+
+# -------------------------------------------------------------------------------- #

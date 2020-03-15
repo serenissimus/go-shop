@@ -9,7 +9,6 @@ COPY server /server
 WORKDIR /server
 RUN go build  -o /go/bin/server ./app
 
-
 FROM alpine:3.11
 COPY --from=JS_BUILD /webapp/build* ./webapp/
 COPY --from=GO_BUILD /go/bin/server ./
