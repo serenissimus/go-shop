@@ -13,6 +13,8 @@ services:
       profile: prod
     links:
       - db
+    networks:
+      - prod
     ports:
       - 8080:8080
 
@@ -24,8 +26,14 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: shop
       POSTGRES_INITDB_ARGS: --data-checksums
+    networks:
+        - prod
     ports:
       - 5432:5432
     restart: always
     volumes:
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+networks:
+  prod:
+    driver: bridge

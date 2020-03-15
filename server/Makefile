@@ -9,6 +9,7 @@ SERVER_BIN = $(OUTPUT_DIR)/server
 
 # Compiler and tools.
 GO = go
+GOBUILD = CGO_ENABLED=0 GOOS=linux $(GO) build
 
 # -------------------------------------------------------------------------------- #
 # Goals.
@@ -16,7 +17,7 @@ GO = go
 all: build
 
 build: format
-	$(GO) build -o $(SERVER_BIN) ./app
+	$(GOBUILD) -o $(SERVER_BIN) ./app
 
 clean:
 	rm -fr ${OUTPUT_DIR}
