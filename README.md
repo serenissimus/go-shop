@@ -1,4 +1,4 @@
-# go-shop
+# Go Shop
 
 ## Environment setup
 
