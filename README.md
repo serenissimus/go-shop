@@ -55,7 +55,7 @@ The application will be available on http://localhost:3000.
 
 ## Start in production mode
 
-Perform in the **docker**:
+Perform in the **docker** directory:
 ```sh
 docker-compose up
 ```
