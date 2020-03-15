@@ -27,7 +27,7 @@ services:
       POSTGRES_DB: shop
       POSTGRES_INITDB_ARGS: --data-checksums
     networks:
-        - prod
+      - prod
     ports:
       - 5432:5432
     restart: always
